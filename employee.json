@@ -1,0 +1,22 @@
+{
+  "employee": [
+    {
+      "id": "1",
+      "name": "tisa",
+      "email": "tisa@gmil.com",
+      "gender": "female",
+      "phone": "6783521478",
+      "salary": 20000,
+      "city": "valsad"
+    },
+    {
+      "id": 1,
+      "name": "tisa",
+      "email": "tisa@tag97.com",
+      "phone": "6351617713",
+      "gender": "Female",
+      "salary": 10000,
+      "city": "Surat"
+    }
+  ]
+}

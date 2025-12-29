@@ -15,32 +15,32 @@
 
             <!-- Name -->
             <div class="mb-3">
+              <label class="form-label">ID</label>
+              <input type="number" class="form-control" placeholder="Enter Id" formControlName="id"  [class.is-invalid]="form.controls['id'].invalid && form.controls['id'].touched">
+              @if (form.controls['id'].invalid && (form.controls['id'].touched || form.controls['id'].dirty)) 
+              {
+                <div class="text-danger">Id is required</div>
+              }
+            </div>
+
+            <!-- Name -->
+            <div class="mb-3">
               <label class="form-label">Name</label>
-              <input type="text" class="form-control" placeholder="Enter name" formControlName="name"  [class.is-invalid]="
-      form.controls['name'].invalid &&
-      form.controls['name'].touched
-    ">
-    @if (
-                            form.controls['name'].invalid &&
-                            (form.controls['name'].touched || form.controls['name'].dirty)
-                            ) {
-                            <div class="text-danger">Name is required</div>
-                            }
+              <input type="text" class="form-control" placeholder="Enter name" formControlName="name"  [class.is-invalid]="form.controls['name'].invalid && form.controls['name'].touched">
+              @if (form.controls['name'].invalid && (form.controls['name'].touched || form.controls['name'].dirty)) 
+              {
+                <div class="text-danger">Name is required</div>
+              }
             </div>
 
             <!-- Email -->
             <div class="mb-3">
               <label class="form-label">Email</label>
-              <input type="email" class="form-control" placeholder="Enter email" formControlName="email" [class.is-invalid]="
-      form.controls['email'].invalid &&
-      form.controls['email'].touched
-    ">
-    @if (
-                            form.controls['email'].invalid &&
-                            (form.controls['email'].touched || form.controls['email'].dirty)
-                            ) {
-                            <div class="text-danger">Email is required</div>
-                            }
+              <input type="email" class="form-control" placeholder="Enter email" formControlName="email" [class.is-invalid]="form.controls['email'].invalid && form.controls['email'].touched">
+              @if (form.controls['email'].invalid && (form.controls['email'].touched || form.controls['email'].dirty)) 
+              {
+                <div class="text-danger">Email is required</div>
+              }
             </div>
 
             <!-- Gender -->
@@ -56,37 +56,31 @@
                 <input class="form-check-input" type="radio" name="gender" value="Female" formControlName="gender">
                 <label class="form-check-label">Female</label>
               </div>
+              @if (form.controls['gender'].invalid && (form.controls['gender'].touched || form.controls['gender'].dirty)) 
+              {
+                <div class="text-danger">Gender is required</div>
+              }
             </div>
             
 
             <!-- Phone No -->
             <div class="mb-3">
               <label class="form-label">Phone No</label>
-              <input type="tel" class="form-control"  placeholder="Enter phone number" formControlName="phone" [class.is-invalid]="
-      form.controls['phone'].invalid &&
-      form.controls['phone'].touched
-    ">
-    @if (
-                            form.controls['phone'].invalid &&
-                            (form.controls['phone'].touched || form.controls['phone'].dirty)
-                            ) {
-                            <div class="text-danger">Phone No. is required</div>
-                            }
+              <input type="tel" class="form-control"  placeholder="Enter phone number" formControlName="phone" [class.is-invalid]="form.controls['phone'].invalid && form.controls['phone'].touched">
+              @if (form.controls['phone'].invalid && (form.controls['phone'].touched || form.controls['phone'].dirty)) 
+              {
+                <div class="text-danger">Phone No. is required</div>
+              }
             </div>
 
             <!-- Salary -->
             <div class="mb-3">
               <label class="form-label">Salary</label>
-              <input type="number" class="form-control" placeholder="Enter salary" formControlName="salary" [class.is-invalid]="
-      form.controls['salary'].invalid &&
-      form.controls['salary'].touched
-    ">
-    @if (
-                            form.controls['salary'].invalid &&
-                            (form.controls['salary'].touched || form.controls['salary'].dirty)
-                            ) {
-                            <div class="text-danger">Salary is required</div>
-                            }
+              <input type="number" class="form-control" placeholder="Enter salary" formControlName="salary" [class.is-invalid]="form.controls['salary'].invalid && form.controls['salary'].touched">
+              @if (form.controls['salary'].invalid && (form.controls['salary'].touched || form.controls['salary'].dirty)) 
+              {
+                <div class="text-danger">Salary is required</div>
+              }
             </div>
 
             <!-- City -->
@@ -99,8 +93,12 @@
                 <option>Vadodara</option>
                 <option>Rajkot</option>
               </select>
+              @if (form.controls['city'].invalid && (form.controls['city'].touched || form.controls['city'].dirty)) 
+              {
+                <div class="text-danger">City is required</div>
+              }
             </div>
-
+            
             <!-- Submit Button -->
             <div class="d-grid">
               <button type="submit" class="btn btn-success" [disabled]="form.invalid" (click)="OnSubmit()">

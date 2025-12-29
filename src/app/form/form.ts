@@ -57,9 +57,15 @@ export class Form {
       console.log('Employee added:', employee);
     });
 
-    this.http.deleteEmployee(id).subscribe((employee) => {
-        console.log('Employee deleted:', employee);
-      });
+      {
+        const id = this.form.value.id!;
+        if(id !==null)
+        {
+            this.http.deleteEmployee(id).subscribe((employee) => {
+                console.log('Employee deleted:', employee);
+              });
+        }
+      }
 
   }
 }

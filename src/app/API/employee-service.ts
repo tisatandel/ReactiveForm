@@ -16,10 +16,11 @@ export interface Employee {
   providedIn: 'root',
 })
 export class EmployeeService {
-  private http = inject(HttpClient);
-  private baseUrl = "http://localhost:3000/employee";
 
-  // GET 
+  private http = inject(HttpClient);
+  private baseUrl = 'http://localhost:3000/employee';
+
+  // GET
   getEmployee(): Observable<Employee[]> {
     return this.http.get<Employee[]>(this.baseUrl);
   }
@@ -33,6 +34,4 @@ export class EmployeeService {
   deleteEmployee(id: number): Observable<Employee> {
     return this.http.delete<Employee>(`${this.baseUrl}/${id}`);
   }
-
-  
 }

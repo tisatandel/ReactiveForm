@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-export interface Employee {
-  id: number;
-  name: string;
-  email: string;
-  phone: number;
-  gender: string;
-  salary: number;
-  city: string;
+export interface Emp {
+  id: string | null;
+  name: string | null;
+  email: string | null;
+  gender: string | null;
+  phone: number | null;
+  salary: number | null;
+  city: string | null;
 }
 
 @Injectable({
@@ -18,20 +18,18 @@ export interface Employee {
 export class EmployeeService {
 
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:3000/employee';
+  private api = 'http://localhost:3000/employee';
 
-  // GET
-  getEmployee(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(this.baseUrl);
+  getEmployee(): Observable<Emp[]> {
+    return this.http.get<Emp[]>(`${this.api}`);
   }
-
-  // POST
-  addEmployee(employee: Employee): Observable<Employee> {
-    return this.http.post<Employee>(this.baseUrl, employee);
+  createEmployee(emp: Emp): Observable<Emp> {
+    return this.http.post<Emp>(this.api, emp);
   }
-
-  // DELETE
-  deleteEmployee(id: number): Observable<Employee> {
-    return this.http.delete<Employee>(`${this.baseUrl}/${id}`);
+  updateEmployee(id: string, emp: Emp) {
+    return this.http.put(`${this.api}/${id}`, emp);
+  }
+  deleteEmployee(id: string) {
+    return this.http.delete(`${this.api}/${id}`);
   }
 }

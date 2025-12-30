@@ -1,115 +1,156 @@
-<body class="bg-light">
-
 <div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Form Card -->
+            <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Employee Details</h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="form">
+                        <div class="mb-3">
+                            <label class="form-label">Id:</label>
+                            <input type="text" class="form-control" placeholder="Enter id" formControlName="id">
+                                </div>
+                            <!-- Name -->
+                            <div class="mb-3">
+                                <label class="form-label">Name:</label>
+                                <input type="text" class="form-control" placeholder="Enter name" formControlName="name"
+                                    [class.is-invalid]="
+                                    form.controls['name'].invalid &&
+                                    form.controls['name'].touched ">
+                            </div>
+                            @if (
+                            form.controls['name'].invalid &&
+                            (form.controls['name'].touched || form.controls['name'].dirty)
+                            ) {
+                            <div class="text-danger">Name is required</div>
+                            }
 
-      <div class="card shadow">
-        <div class="card-header bg-primary text-white text-center">
-          <h4>Employee Form</h4>
+
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label class="form-label">Email:</label>
+                                <input type="email" class="form-control" placeholder="Enter email"
+                                    formControlName="email" [class.is-invalid]="
+                                    form.controls['email'].invalid &&
+                                    form.controls['email'].touched ">
+                                @if (
+                                form.controls['email'].invalid &&
+                                (form.controls['email'].touched || form.controls['name'].dirty)
+                                ) {
+                                <div class="text-danger">Email is required</div>
+                                }
+                            </div>
+
+
+
+                            <!-- Gender -->
+                            <div class="mb-3">
+                                <label class="form-label d-block">Gender:</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="male" formControlName="gender">
+                                    <label class="form-check-label">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="female"
+                                        formControlName="gender">
+                                    <label class="form-check-label">Female</label>
+                                </div>
+
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="mb-3">
+                                <label class="form-label">Phone No:</label>
+                                <input type="number" class="form-control" placeholder="Enter phone number"
+                                    formControlName="phone" [class.is-invalid]="
+                                     form.controls['phone'].invalid &&
+                                    form.controls['phone'].touched ">
+                            </div>
+                            @if (
+                            form.controls['phone'].invalid &&
+                            (form.controls['phone'].touched || form.controls['name'].dirty)
+                            ) {
+                            <div class="text-danger">Phone No is required</div>
+                            }
+
+
+                            <!-- Salary -->
+                            <div class="mb-3">
+                                <label class="form-label">Salary:</label>
+                                <input type="number" class="form-control" formControlName="salary"
+                                    [class.is-invalid]="form.controls['salary'].invalid && (form.controls['salary'].touched || form.controls['salary'].dirty)">
+                            </div>
+
+                            <!-- City -->
+                            <div class="mb-3">
+                                <label class="form-label">City:</label>
+                                <select class="form-select" formControlName="city"
+                                    [class.is-invalid]="form.controls['city'].invalid && (form.controls['city'].touched || form.controls['city'].dirty)">
+                                    <option value="">Select City</option>
+                                    <option>Surat</option>
+                                    <option>Ahmedabad</option>
+                                    <option>Vadodara</option>
+                                    <option>Rajkot</option>
+                                </select>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-success" [disabled]="form.invalid"
+                                    (click)="onSubmit()" [hidden]="isEditMode">Add</button>
+                                <button type="button" class="btn btn-primary" [disabled]="form.invalid"
+                                    (click)="updateEmployee()" [hidden]="!isEditMode">Update</button>
+                                <button type="button" class="btn btn-secondary" (click)="cancelEdit()"
+                                    [hidden]="!isEditMode">Cancel</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Table Below Form -->
+            <div class="card shadow">
+                <div class="card-header bg-info text-white text-center">
+                    <h4>Employee List</h4>
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Gender</th>
+                                <th>Phone</th>
+                                <th>Salary</th>
+                                <th>City</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for(emp of employeeList; track $index) {
+                            <tr>
+                                <td>{{ emp.id }}</td>
+                                <td>{{ emp.name }}</td>
+                                <td>{{ emp.email }}</td>
+                                <td>{{ emp.gender }}</td>
+                                <td>{{ emp.phone }}</td>
+                                <td>{{ emp.salary }}</td>
+                                <td>{{ emp.city }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary me-1"
+                                        (click)="editEmployee(emp)">Edit</button>
+                                    <button class="btn btn-sm btn-danger"
+                                        (click)="deleteEmployee(emp.id)">Delete</button>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
-
-        <div class="card-body">
-
-          <form [formGroup]="form">
-
-            <!-- Name -->
-            <div class="mb-3">
-              <label class="form-label">ID</label>
-              <input type="number" class="form-control" placeholder="Enter Id" formControlName="id"  [class.is-invalid]="form.controls['id'].invalid && form.controls['id'].touched">
-              @if (form.controls['id'].invalid && (form.controls['id'].touched || form.controls['id'].dirty)) 
-              {
-                <div class="text-danger">Id is required</div>
-              }
-            </div>
-
-            <!-- Name -->
-            <div class="mb-3">
-              <label class="form-label">Name</label>
-              <input type="text" class="form-control" placeholder="Enter name" formControlName="name"  [class.is-invalid]="form.controls['name'].invalid && form.controls['name'].touched">
-              @if (form.controls['name'].invalid && (form.controls['name'].touched || form.controls['name'].dirty)) 
-              {
-                <div class="text-danger">Name is required</div>
-              }
-            </div>
-
-            <!-- Email -->
-            <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="email" class="form-control" placeholder="Enter email" formControlName="email" [class.is-invalid]="form.controls['email'].invalid && form.controls['email'].touched">
-              @if (form.controls['email'].invalid && (form.controls['email'].touched || form.controls['email'].dirty)) 
-              {
-                <div class="text-danger">Email is required</div>
-              }
-            </div>
-
-            <!-- Gender -->
-            <div class="mb-3">
-              <label class="form-label d-block">Gender</label>
-
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="gender"  value="Male" formControlName="gender">
-                <label class="form-check-label">Male</label>
-              </div>
-
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="gender" value="Female" formControlName="gender">
-                <label class="form-check-label">Female</label>
-              </div>
-              @if (form.controls['gender'].invalid && (form.controls['gender'].touched || form.controls['gender'].dirty)) 
-              {
-                <div class="text-danger">Gender is required</div>
-              }
-            </div>
-            
-
-            <!-- Phone No -->
-            <div class="mb-3">
-              <label class="form-label">Phone No</label>
-              <input type="tel" class="form-control"  placeholder="Enter phone number" formControlName="phone" [class.is-invalid]="form.controls['phone'].invalid && form.controls['phone'].touched">
-              @if (form.controls['phone'].invalid && (form.controls['phone'].touched || form.controls['phone'].dirty)) 
-              {
-                <div class="text-danger">Phone No. is required</div>
-              }
-            </div>
-
-            <!-- Salary -->
-            <div class="mb-3">
-              <label class="form-label">Salary</label>
-              <input type="number" class="form-control" placeholder="Enter salary" formControlName="salary" [class.is-invalid]="form.controls['salary'].invalid && form.controls['salary'].touched">
-              @if (form.controls['salary'].invalid && (form.controls['salary'].touched || form.controls['salary'].dirty)) 
-              {
-                <div class="text-danger">Salary is required</div>
-              }
-            </div>
-
-            <!-- City -->
-            <div class="mb-3">
-              <label class="form-label">City</label>
-              <select class="form-select" formControlName="city">
-                <option selected>Select city</option>
-                <option>Surat</option>
-                <option>Ahmedabad</option>
-                <option>Vadodara</option>
-                <option>Rajkot</option>
-              </select>
-              @if (form.controls['city'].invalid && (form.controls['city'].touched || form.controls['city'].dirty)) 
-              {
-                <div class="text-danger">City is required</div>
-              }
-            </div>
-            
-            <!-- Submit Button -->
-            <div class="d-grid">
-              <button type="submit" class="btn btn-success" [disabled]="form.invalid" (click)="OnSubmit()">
-                Submit
-              </button>
-              </div>
-          </form>
-
-        </div>
-      </div>
-
     </div>
-  </div>
 </div>

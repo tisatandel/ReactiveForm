@@ -2,21 +2,30 @@
   "employee": [
     {
       "id": "1",
-      "name": "tisa",
-      "email": "tisa@gmil.com",
+      "name": "twisa",
+      "email": "twisa@tag97.com",
+      "phone": 6351617713,
       "gender": "female",
-      "phone": "6783521478",
       "salary": 20000,
-      "city": "valsad"
+      "city": "Surat"
     },
     {
-      "id": "1",
+      "id": "2",
       "name": "tisa",
       "email": "tisa@tag97.com",
-      "phone": "6351617713",
-      "gender": "Female",
-      "salary": 10000,
+      "phone": 9904240331,
+      "gender": "female",
+      "salary": 30000,
       "city": "Surat"
+    },
+    {
+      "id": "4",
+      "name": "prachi",
+      "email": "prachi@tag97.com",
+      "phone": 9854732846,
+      "gender": "female",
+      "salary": 50000,
+      "city": "Vadodara"
     }
   ]
 }

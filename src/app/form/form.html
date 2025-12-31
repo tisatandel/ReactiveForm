@@ -129,7 +129,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for(emp of employeeList; track $index) {
+                            @let employees = employees$ | async;
+
+                            @for(emp of employees; track $index) {
                             <tr>
                                 <td>{{ emp.id }}</td>
                                 <td>{{ emp.name }}</td>

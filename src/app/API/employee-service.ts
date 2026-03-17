@@ -21,14 +21,17 @@ export class EmployeeService {
   private api = 'http://localhost:3000/employee';
 
   getEmployee(): Observable<Emp[]> {
-    return this.http.get<Emp[]>(`${this.api}`);
+    return this.http.get<Emp[]>(this.api);
   }
+
   createEmployee(emp: Emp): Observable<Emp> {
     return this.http.post<Emp>(this.api, emp);
   }
+
   updateEmployee(id: string, emp: Emp) {
     return this.http.put(`${this.api}/${id}`, emp);
   }
+
   deleteEmployee(id: string) {
     return this.http.delete(`${this.api}/${id}`);
   }

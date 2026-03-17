@@ -1,31 +1,13 @@
 {
   "employee": [
     {
-      "id": "1",
-      "name": "twisa",
-      "email": "twisa@tag97.com",
-      "phone": 6351617713,
+      "id": "101",
+      "name": "Tisa Tandel",
+      "email": "tisatandel@tag97.com",
+      "phone": "6351617713",
       "gender": "female",
-      "salary": 20000,
+      "salary": "5000",
       "city": "Surat"
-    },
-    {
-      "id": "2",
-      "name": "tisa",
-      "email": "tisa@tag97.com",
-      "phone": 9904240331,
-      "gender": "female",
-      "salary": 30000,
-      "city": "Surat"
-    },
-    {
-      "id": "4",
-      "name": "prachi",
-      "email": "prachi@tag97.com",
-      "phone": 9854732846,
-      "gender": "female",
-      "salary": 50000,
-      "city": "Vadodara"
     }
   ]
 }

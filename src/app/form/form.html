@@ -1,158 +1,185 @@
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <!-- Form Card -->
-            <div class="card shadow mb-4">
-                <div class="card-header bg-primary text-white text-center">
-                    <h4>Employee Details</h4>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 col-xl-8">
+
+      <!-- Employee Form Card -->
+      <div class="card border-0 shadow-lg mb-5 rounded-4 overflow-hidden">
+        <div class="card-header bg-primary text-white border-0 pt-5 pb-2 text-center">
+          <h2 class="display-6 fw-bold" style="letter-spacing: -1px;">Employee Details</h2>
+          <p class="fs-5">Management Portal</p>
+        </div>
+
+        <div class="card-body px-4 px-md-5 pb-5 bg-light">
+          <form [formGroup]="form">
+            <div class="row g-4">
+
+              <!-- Employee ID -->
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small text-primary">Employee ID</label>
+                <input type="text" class="form-control form-control-lg border-2"
+                       [class.is-invalid]="form.get('id')?.invalid && form.get('id')?.touched"
+                       placeholder="Enter ID" formControlName="id">
+                <div class="invalid-feedback" 
+                     *ngIf="form.get('id')?.invalid && (form.get('id')?.touched || form.get('id')?.dirty)">
+                  ID is required
                 </div>
-                <div class="card-body">
-                    <form [formGroup]="form">
-                        <div class="mb-3">
-                            <label class="form-label">Id:</label>
-                            <input type="text" class="form-control" placeholder="Enter id" formControlName="id">
-                                </div>
-                            <!-- Name -->
-                            <div class="mb-3">
-                                <label class="form-label">Name:</label>
-                                <input type="text" class="form-control" placeholder="Enter name" formControlName="name"
-                                    [class.is-invalid]="
-                                    form.controls['name'].invalid &&
-                                    form.controls['name'].touched ">
-                            </div>
-                            @if (
-                            form.controls['name'].invalid &&
-                            (form.controls['name'].touched || form.controls['name'].dirty)
-                            ) {
-                            <div class="text-danger">Name is required</div>
-                            }
+              </div>
 
-
-                            <!-- Email -->
-                            <div class="mb-3">
-                                <label class="form-label">Email:</label>
-                                <input type="email" class="form-control" placeholder="Enter email"
-                                    formControlName="email" [class.is-invalid]="
-                                    form.controls['email'].invalid &&
-                                    form.controls['email'].touched ">
-                                @if (
-                                form.controls['email'].invalid &&
-                                (form.controls['email'].touched || form.controls['name'].dirty)
-                                ) {
-                                <div class="text-danger">Email is required</div>
-                                }
-                            </div>
-
-
-
-                            <!-- Gender -->
-                            <div class="mb-3">
-                                <label class="form-label d-block">Gender:</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" value="male" formControlName="gender">
-                                    <label class="form-check-label">Male</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" value="female"
-                                        formControlName="gender">
-                                    <label class="form-check-label">Female</label>
-                                </div>
-
-                            </div>
-
-                            <!-- Phone -->
-                            <div class="mb-3">
-                                <label class="form-label">Phone No:</label>
-                                <input type="number" class="form-control" placeholder="Enter phone number"
-                                    formControlName="phone" [class.is-invalid]="
-                                     form.controls['phone'].invalid &&
-                                    form.controls['phone'].touched ">
-                            </div>
-                            @if (
-                            form.controls['phone'].invalid &&
-                            (form.controls['phone'].touched || form.controls['name'].dirty)
-                            ) {
-                            <div class="text-danger">Phone No is required</div>
-                            }
-
-
-                            <!-- Salary -->
-                            <div class="mb-3">
-                                <label class="form-label">Salary:</label>
-                                <input type="number" class="form-control" formControlName="salary"
-                                    [class.is-invalid]="form.controls['salary'].invalid && (form.controls['salary'].touched || form.controls['salary'].dirty)">
-                            </div>
-
-                            <!-- City -->
-                            <div class="mb-3">
-                                <label class="form-label">City:</label>
-                                <select class="form-select" formControlName="city"
-                                    [class.is-invalid]="form.controls['city'].invalid && (form.controls['city'].touched || form.controls['city'].dirty)">
-                                    <option value="">Select City</option>
-                                    <option>Surat</option>
-                                    <option>Ahmedabad</option>
-                                    <option>Vadodara</option>
-                                    <option>Rajkot</option>
-                                </select>
-                            </div>
-
-                            <!-- Buttons -->
-                            <div class="d-grid gap-2">
-                                <button type="button" class="btn btn-success" [disabled]="form.invalid"
-                                    (click)="onSubmit()" [hidden]="isEditMode">Add</button>
-                                <button type="button" class="btn btn-primary" [disabled]="form.invalid"
-                                    (click)="updateEmployee()" [hidden]="!isEditMode">Update</button>
-                                <button type="button" class="btn btn-secondary" (click)="cancelEdit()"
-                                    [hidden]="!isEditMode">Cancel</button>
-                            </div>
-                    </form>
+              <!-- Full Name -->
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small text-primary">Full Name</label>
+                <input type="text" class="form-control form-control-lg border-2"
+                       [class.is-invalid]="form.get('name')?.invalid && form.get('name')?.touched"
+                       placeholder="Enter name" formControlName="name">
+                <div class="invalid-feedback" 
+                     *ngIf="form.get('name')?.invalid && (form.get('name')?.touched || form.get('name')?.dirty)">
+                  Name is required
                 </div>
+              </div>
+
+              <!-- Email -->
+              <div class="col-md-12">
+                <label class="form-label fw-semibold small text-primary">Email Address</label>
+                <input type="text" class="form-control form-control-lg border-2"
+                       [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched"
+                       placeholder="Enter email" formControlName="email">
+                <div class="invalid-feedback" 
+                     *ngIf="form.get('email')?.invalid && (form.get('email')?.touched || form.get('email')?.dirty)">
+                  Email is required
+                </div>
+              </div>
+
+              <!-- Gender -->
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small text-primary d-block">Gender</label>
+                <div class="btn-group w-100" role="group">
+                  <input type="radio" class="btn-check" formControlName="gender" value="male" id="male">
+                  <label class="btn btn-outline-primary py-2" for="male">Male</label>
+
+                  <input type="radio" class="btn-check" formControlName="gender" value="female" id="female">
+                  <label class="btn btn-outline-danger py-2" for="female">Female</label>
+                </div>
+                <div class="invalid-feedback d-block"
+                     *ngIf="form.get('gender')?.invalid && (form.get('gender')?.touched || form.get('gender')?.dirty)">
+                  Please select a gender
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small text-primary">Phone Number</label>
+                <input type="text" class="form-control form-control-lg border-2"
+                       [class.is-invalid]="form.get('phone')?.invalid && form.get('phone')?.touched"
+                       placeholder="Enter phone number" formControlName="phone">
+                <div class="invalid-feedback" 
+                     *ngIf="form.get('phone')?.invalid && (form.get('phone')?.touched || form.get('phone')?.dirty)">
+                  Phone number is required
+                </div>
+              </div>
+
+              <!-- Salary -->
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small text-primary">Annual Salary</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-success text-white border-2 border-end-0">₹</span>
+                  <input type="text" class="form-control form-control-lg border-2"
+                         [class.is-invalid]="form.get('salary')?.invalid && form.get('salary')?.touched"
+                         placeholder="Enter salary" formControlName="salary">
+                  <div class="invalid-feedback" 
+                       *ngIf="form.get('salary')?.invalid && (form.get('salary')?.touched || form.get('salary')?.dirty)">
+                    Salary is required
+                  </div>
+                </div>
+              </div>
+
+              <!-- City -->
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small text-primary">City</label>
+                <select class="form-select form-select-lg border-2 bg-info bg-opacity-25"
+                        [class.is-invalid]="form.get('city')?.invalid && form.get('city')?.touched"
+                        formControlName="city">
+                  <option value="">Select City</option>
+                  <option>Surat</option>
+                  <option>Ahmedabad</option>
+                  <option>Vadodara</option>
+                  <option>Rajkot</option>
+                </select>
+                <div class="invalid-feedback"
+                     *ngIf="form.get('city')?.invalid && (form.get('city')?.touched || form.get('city')?.dirty)">
+                  Please select a city
+                </div>
+              </div>
+
             </div>
 
-            <!-- Table Below Form -->
-            <div class="card shadow">
-                <div class="card-header bg-info text-white text-center">
-                    <h4>Employee List</h4>
-                </div>
-                <div class="card-body table-responsive">
-                    <table class="table table-striped table-bordered table-hover">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Gender</th>
-                                <th>Phone</th>
-                                <th>Salary</th>
-                                <th>City</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @let employees = employees$ | async;
+            <!-- Buttons -->
+            <div class="mt-5 d-flex gap-3">
+              <button type="button" class="btn btn-dark btn-lg px-5 flex-grow-1 shadow-sm rounded-pill"
+                      [disabled]="form.invalid" (click)="onSubmit()" [hidden]="isEditMode">
+                Add Employee
+              </button>
 
-                            @for(emp of employees; track $index) {
-                            <tr>
-                                <td>{{ emp.id }}</td>
-                                <td>{{ emp.name }}</td>
-                                <td>{{ emp.email }}</td>
-                                <td>{{ emp.gender }}</td>
-                                <td>{{ emp.phone }}</td>
-                                <td>{{ emp.salary }}</td>
-                                <td>{{ emp.city }}</td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary me-1"
-                                        (click)="editEmployee(emp)">Edit</button>
-                                    <button class="btn btn-sm btn-danger"
-                                        (click)="deleteEmployee(emp.id)">Delete</button>
-                                </td>
-                            </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
+              <button type="button" class="btn btn-primary btn-lg px-5 flex-grow-1 shadow-sm rounded-pill"
+                      [disabled]="form.invalid" (click)="updateEmployee()" [hidden]="!isEditMode">
+                Save Changes
+              </button>
+
+              <button type="button" class="btn btn-light btn-lg px-4 shadow-sm rounded-pill"
+                      (click)="cancelEdit()" [hidden]="!isEditMode">
+                Cancel
+              </button>
             </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Employee Table Card -->
+      <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+        <div class="card-body p-0">
+          <div class="bg-info p-4 border-bottom d-flex justify-content-between align-items-center text-white">
+            <h5 class="mb-0 fw-bold">Active Directory</h5>
+            <span class="badge bg-primary text-white shadow-sm border px-3 py-2 rounded-pill">
+              Total: {{ (employees$ | async)?.length }}
+            </span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle mb-0">
+              <thead class="bg-primary text-white small text-uppercase">
+                <tr>
+                  <th class="ps-4">ID</th>
+                  <th>Employee</th>
+                  <th>Contact</th>
+                  <th>Location</th>
+                  <th>Salary</th>
+                  <th class="text-end pe-4">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let emp of employees$ | async; let i = index">
+                  <td class="ps-4 fw-bold">{{ emp.id }}</td>
+                  <td>
+                    <div class="fw-bold">{{ emp.name }}</div>
+                    <div class="small text-muted">{{ emp.gender }}</div>
+                  </td>
+                  <td>
+                    <div class="small fw-semibold">{{ emp.email }}</div>
+                    <div class="small text-muted">{{ emp.phone }}</div>
+                  </td>
+                  <td><span class="badge bg-info text-dark">{{ emp.city }}</span></td>
+                  <td class="fw-bold text-success">₹{{ emp.salary }}</td>
+                  <td class="text-end pe-4">
+                    <button class="btn btn-sm btn-outline-dark border-0 me-2" (click)="editEmployee(emp)">Edit</button>
+                    <button class="btn btn-sm btn-outline-danger border-0" (click)="deleteEmployee(emp.id)">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
         </div>
+      </div>
+
     </div>
+  </div>
 </div>
